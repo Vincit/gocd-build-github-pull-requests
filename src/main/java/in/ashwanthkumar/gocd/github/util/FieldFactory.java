@@ -1,5 +1,9 @@
 package in.ashwanthkumar.gocd.github.util;
 
+import in.ashwanthkumar.gocd.github.util.field.PartOfIdentity;
+import in.ashwanthkumar.gocd.github.util.field.Required;
+import in.ashwanthkumar.gocd.github.util.field.Secure;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,14 +21,14 @@ public class FieldFactory {
      * @param displayOrder
      * @return
      */
-    public static Map<String, Object> createForScm(String displayName, String defaultValue, boolean isPartOfIdentity, boolean isRequired, boolean isSecure, String displayOrder) {
+    public static Map<String, Object> createForScm(String displayName, String defaultValue, PartOfIdentity isPartOfIdentity, Required isRequired, Secure isSecure, int displayOrder) {
         Map<String, Object> fieldProperties = new HashMap<String, Object>();
         fieldProperties.put("display-name", displayName);
         fieldProperties.put("default-value", defaultValue);
-        fieldProperties.put("part-of-identity", isPartOfIdentity);
-        fieldProperties.put("required", isRequired);
-        fieldProperties.put("secure", isSecure);
-        fieldProperties.put("display-order", displayOrder);
+        fieldProperties.put("part-of-identity", isPartOfIdentity.toBoolean());
+        fieldProperties.put("required", isRequired.toBoolean());
+        fieldProperties.put("secure", isSecure.toBoolean());
+        fieldProperties.put("display-order", Integer.toString(displayOrder));
         return fieldProperties;
     }
 
@@ -37,13 +41,13 @@ public class FieldFactory {
      * @param displayOrder
      * @return
      */
-    public static Map<String, Object> createForGeneral(String displayName, String defaultValue, boolean isRequired, boolean isSecure, String displayOrder) {
+    public static Map<String, Object> createForGeneral(String displayName, String defaultValue, Required isRequired, Secure isSecure, int displayOrder) {
         Map<String, Object> fieldProperties = new HashMap<String, Object>();
         fieldProperties.put("display-name", displayName);
         fieldProperties.put("default-value", defaultValue);
-        fieldProperties.put("required", isRequired);
-        fieldProperties.put("secure", isSecure);
-        fieldProperties.put("display-order", displayOrder);
+        fieldProperties.put("required", isRequired.toBoolean());
+        fieldProperties.put("secure", isSecure.toBoolean());
+        fieldProperties.put("display-order", Integer.toString(displayOrder));
         return fieldProperties;
     }
 
