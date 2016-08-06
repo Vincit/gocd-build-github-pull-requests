@@ -36,6 +36,14 @@ public class GitProviderTest extends AbstractProviderTest {
         assertThat(generalConfigurationView.hasConfigurationView(), is(false));
     }
 
+    @Test
+    public void shouldReturnCorrectGeneralSettingsFields() throws Exception {
+        PluginConfigurationView generalConfigurationView = getGeneralView();
+
+        assertThat(generalConfigurationView.fields().size(), is(0));
+
+    }
+
     @Override
     protected Provider getProvider() {
         return new GitProvider();
