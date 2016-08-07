@@ -1,6 +1,5 @@
 package in.ashwanthkumar.gocd.github.provider.gerrit;
 
-import in.ashwanthkumar.gocd.github.settings.general.DefaultGeneralPluginSettings;
 import in.ashwanthkumar.gocd.github.settings.general.GeneralPluginConfigurationView;
 import in.ashwanthkumar.gocd.github.settings.general.GeneralPluginSettings;
 import in.ashwanthkumar.gocd.github.util.FieldFactory;
@@ -15,7 +14,7 @@ public class GerritPluginConfigurationView implements GeneralPluginConfiguration
 
     @Override
     public String templateName() {
-        return "/views/plugin.template.html";
+        return "/views/gerrit.plugin.template.html";
     }
 
     @Override
@@ -32,8 +31,9 @@ public class GerritPluginConfigurationView implements GeneralPluginConfiguration
         return true;
     }
 
+    @Override
     public GeneralPluginSettings getSettings(Map<String, Object> rawSettings) {
-        GeneralPluginSettings settings = new DefaultGeneralPluginSettings(
+        GerritPluginSettings settings = new GerritPluginSettings(
                 (String)rawSettings.get("go_api_host"),
                 (String)rawSettings.get("go_api_username"),
                 (String)rawSettings.get("go_api_password")
