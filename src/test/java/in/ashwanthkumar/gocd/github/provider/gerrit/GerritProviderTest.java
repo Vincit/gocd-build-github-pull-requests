@@ -15,7 +15,7 @@ public class GerritProviderTest extends in.ashwanthkumar.gocd.github.provider.Ab
     public void shouldReturnCorrectScmSettingsTemplate() throws Exception {
         PluginConfigurationView scmConfigurationView = getScmView();
 
-        assertThat(scmConfigurationView.templateName(), is("/views/scm.template.html"));;
+        assertThat(scmConfigurationView.templateName(), is("/views/gerrit.scm.template.html"));;
     }
 
     @Test

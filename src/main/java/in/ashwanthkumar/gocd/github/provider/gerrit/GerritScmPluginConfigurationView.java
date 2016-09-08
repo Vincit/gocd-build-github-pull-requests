@@ -1,5 +1,8 @@
-package in.ashwanthkumar.gocd.github.settings.scm;
+package in.ashwanthkumar.gocd.github.provider.gerrit;
 
+import in.ashwanthkumar.gocd.github.settings.scm.DefaultScmPluginSettings;
+import in.ashwanthkumar.gocd.github.settings.scm.ScmPluginConfigurationView;
+import in.ashwanthkumar.gocd.github.settings.scm.ScmPluginSettings;
 import in.ashwanthkumar.gocd.github.util.BranchFilter;
 import in.ashwanthkumar.gocd.github.util.FieldFactory;
 import in.ashwanthkumar.gocd.github.util.field.PartOfIdentity;
@@ -9,12 +12,12 @@ import in.ashwanthkumar.gocd.github.util.field.Secure;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DefaultScmPluginConfigurationView implements ScmPluginConfigurationView {
+public class GerritScmPluginConfigurationView implements ScmPluginConfigurationView {
 
 
     @Override
     public String templateName() {
-        return "/views/scm.template.html";
+        return "/views/gerrit.scm.template.html";
     }
 
     @Override
@@ -23,6 +26,7 @@ public class DefaultScmPluginConfigurationView implements ScmPluginConfiguration
         response.put("url", FieldFactory.createForScm("URL", null, PartOfIdentity.YES, Required.YES, Secure.NO, 0));
         response.put("username", FieldFactory.createForScm("Username", null, PartOfIdentity.NO, Required.NO, Secure.NO, 1));
         response.put("password", FieldFactory.createForScm("Password", null, PartOfIdentity.NO, Required.NO, Secure.YES, 2));
+        response.put("pipeline_name", FieldFactory.createForScm("Pipeline name", null, PartOfIdentity.NO, Required.NO, Secure.NO, 3));
         return response;
     }
 
@@ -42,7 +46,7 @@ public class DefaultScmPluginConfigurationView implements ScmPluginConfiguration
                 rawSettings.get("username"),
                 rawSettings.get("password"),
                 null,
-                null
+                rawSettings.get("pipeline_name")
         );
 
         return settings;
